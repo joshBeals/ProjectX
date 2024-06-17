@@ -1,48 +1,44 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
-
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-            <!-- Email Address -->
+<x-auth-layout>
+    <div class="login-card login-dark">
+        <div>
+            <div><a class="logo" href=""><img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo-1.png') }}" alt="looginpage"><img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo.png') }}" alt="loginpage"></a></div>
             <div>
-                <x-label for="email" :value="__('Email')" />
+                <x-auth-session-status class="mb-4" :status="session('status')" />
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            </div> 
+            <div class="login-main"> 
+                <form class="theme-form" method="POST" action="{{ route('password.update') }}">
+                    @csrf
+                    <h3>Reset Password</h3>
+                    <!-- Password Reset Token -->
+                    <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                    <div class="form-group">
+                        <label class="col-form-label">Email Address</label>
+                        <input class="form-control" type="email" name="email" value="{{ $request->email }}" required readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">New Password</label>
+                        <div class="form-input position-relative">
+                        <input class="form-control" type="password" name="password" required="" placeholder="*********">
+                        <div class="show-hide"><span class="show">                         </span></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Confirm Password</label>
+                        <div class="form-input position-relative">
+                        <input class="form-control" type="password" name="password_confirmation" required="" placeholder="*********">
+                        <div class="show-hide"><span class="show">                         </span></div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-0">
+                        <div class="text-end mt-3">
+                            <button class="btn btn-primary btn-block w-100" type="submit">Reset Password</button>
+                        </div>
+                    </div>
+                    <p class="mt-4 mb-0 text-center">Don't have account?<a class="ms-2" href="{{ route('register') }}">Create Account</a></p>
+                </form>
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </div>
+</x-auth-layout>

@@ -1,36 +1,32 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-        </div>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.confirm') }}">
-            @csrf
-
-            <!-- Password -->
+<x-auth-layout>
+    <div class="login-card login-dark">
+        <div>
+            <div><a class="logo" href=""><img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo-1.png') }}" alt="looginpage"><img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo.png') }}" alt="loginpage"></a></div>
             <div>
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                <x-auth-session-status class="mb-4" :status="session('status')" />
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            </div> 
+            <div class="login-main"> 
+                <form class="theme-form" method="POST" action="{{ route('password.confirm') }}">
+                    @csrf
+                    <h3>Confirm Password</h3>
+                    <div class="alert alert-primary text-center my-4" role="alert">
+                        This is a secure area of the application. Please confirm your password before continuing.
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Password</label>
+                        <div class="form-input position-relative">
+                        <input class="form-control" type="password" name="password" required="" placeholder="*********">
+                        <div class="show-hide"><span class="show">                         </span></div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-0">
+                        <div class="text-end mt-3">
+                            <button class="btn btn-primary btn-block w-100" type="submit">Confirm</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <div class="flex justify-end mt-4">
-                <x-button>
-                    {{ __('Confirm') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </div>
+</x-auth-layout>
