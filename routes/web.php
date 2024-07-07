@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExcelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group([
+    'middleware' => ['auth', 'verified'],
+    'prefix' => 'dashboard',
+], function () {
+    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/file_manager', [DashboardController::class, 'file_manager'])->name('file_manager');
+    Route::post('/upload', [ExcelController::class, 'uploadFile'])->name('excel.upload');
+});
 
 require __DIR__.'/auth.php';

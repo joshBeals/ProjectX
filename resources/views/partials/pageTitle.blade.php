@@ -7,9 +7,9 @@
             <div class="col-sm-6 pe-0">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="">                                       
-                    <svg class="stroke-icon">
-                    <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
-                    </svg></a></li>
+                <div class="stroke-icon">
+                <i data-feather="home"></i>
+                </div></a></li>
                 <li class="breadcrumb-item active">{{$slug}}</li>
             </ol>
             </div>

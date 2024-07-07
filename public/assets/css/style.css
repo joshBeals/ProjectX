@@ -20369,7 +20369,7 @@ p.data-attributes svg {
   background-size: cover;
   display: block;
   direction: ltr;
-  height: 320px;
+  height: 250px;
   border-radius: 15px;
 }
 .default-dashboard .welcome-card .card-body .d-flex .flex-grow-1 {
@@ -20377,7 +20377,7 @@ p.data-attributes svg {
 }
 .default-dashboard .welcome-card .card-body .d-flex .flex-shrink-0 {
   position: absolute;
-  top: 69px;
+  top: 39px;
   right: -20px;
 }
 .default-dashboard .welcome-card .card-body .d-flex .flex-shrink-0 img {
@@ -33485,7 +33485,7 @@ body.dark-only .page-wrapper .page-body-wrapper .page-title .row h3 small {
 body.dark-only .page-wrapper .page-body-wrapper .page-title .breadcrumb li {
   color: rgba(255, 255, 255, 0.6);
 }
-body.dark-only .page-wrapper .page-body-wrapper .page-title .breadcrumb .breadcrumb-item a svg {
+body.dark-only .page-wrapper .page-body-wrapper .page-title .breadcrumb .breadcrumb-item a i {
   stroke: rgba(255, 255, 255, 0.6);
 }
 body.dark-only .page-wrapper .page-body-wrapper .page-body {
@@ -39485,7 +39485,7 @@ footer p .footer-icon {
   content: "/";
   color: var(--theme-default);
 }
-.page-wrapper .page-body-wrapper .page-title .breadcrumb .breadcrumb-item a svg {
+.page-wrapper .page-body-wrapper .page-title .breadcrumb .breadcrumb-item a i {
   width: 16px;
   height: 16px;
   stroke: #5C61F2;
