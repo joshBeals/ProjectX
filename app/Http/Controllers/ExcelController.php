@@ -13,9 +13,15 @@ class ExcelController extends Controller
 
     public function uploadFile(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:csv,txt',
-        ]);
+        try {
+            $request->validate([
+                'title' => 'required',
+                'description' => 'nullable',
+                'file' => 'required|mimes:xlsx,xls',
+            ]);
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
 
         $path = $request->file('file')->store('uploads');
 

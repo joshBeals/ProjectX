@@ -24981,6 +24981,11 @@ p.data-attributes svg {
   display: inline-block;
   margin: 2px 0;
   position: relative;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+.file-content .folder .folder-box:hover{
+ transform: scale(1.02);
 }
 .file-content .folder .folder-box h6 {
   font-size: 16px;
