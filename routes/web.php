@@ -26,6 +26,7 @@ Route::group([
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/file_manager', [DashboardController::class, 'file_manager'])->name('file_manager');
     Route::post('/upload', [ExcelController::class, 'uploadFile'])->name('excel.upload');
+    Route::get('/report/{id}', [ExcelController::class, 'showReport'])->name('report');
 });
 
 require __DIR__.'/auth.php';

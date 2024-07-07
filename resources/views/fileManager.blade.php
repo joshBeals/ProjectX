@@ -31,19 +31,19 @@
                                     @csrf
                                     <div class="col-12">
                                         <label class="form-label" for="validationCustom01">Title</label>
-                                        <input class="form-control" id="validationCustom01" type="text" placeholder="Report Title" required>
+                                        <input class="form-control" id="validationCustom01" name="title" type="text" placeholder="Report Title" required>
                                         <div class="invalid-feedback">Please enter your valid </div>
                                         <div class="valid-feedback">
                                         Looks's Good!</div>
                                     </div>
                                     <div class="col-12"> 
                                         <label class="form-label" for="validationTextarea">Description</label>
-                                        <textarea class="form-control" id="validationTextarea" placeholder="Enter your report description"></textarea>
+                                        <textarea class="form-control" id="validationTextarea" name="description" placeholder="Enter your report description"></textarea>
                                         <div class="invalid-feedback">Please enter a message in the textarea.</div>
                                     </div>
                                     <div class="col-12"> 
                                         <label class="form-label" for="formFile1">Upload Excel File</label>
-                                        <input class="form-control" id="formFile1" type="file" aria-label="file example" accept=".xlsx,.xls" required>
+                                        <input class="form-control" id="formFile1" name="file" type="file" aria-label="file example" accept=".csv,.xlsx,.xls" required>
                                         <div class="invalid-feedback">Invalid form file selected</div>
                                     </div>
                                     <div class="col-12">
@@ -79,16 +79,26 @@
                 </div>
                 <div class="card-body file-manager">
                     <h5 class="mt-4 mb-2">Reports</h5>
+                    @if($reports->isEmpty())
+                    <div class="alert alert-light-primary" role="alert">
+                        <p class="txt-primary">No reports have been generated yet!</p>
+                    </div>
+                    @else
                     <ul class="folder mb-2">
-                        <li class="folder-box">
-                            <div class="d-block"><i class="f-44 fa fa-file-excel-o font-success"></i>
-                            <div class="mt-3">  
-                                <h6>Tivo admin</h6>
-                                <p>20 file<span class="pull-right"> <i class="fa fa-clock-o"> </i> 2 Hour ago</span></p>
-                            </div>
-                            </div>
-                        </li>
+                        @foreach($reports as $report)
+                        <a href="/report/{{ $ }}">
+                            <li class="folder-box">
+                                <div class="d-block"><i class="f-44 fa fa-file-excel-o font-success"></i>
+                                <div class="mt-3">  
+                                    <h6>{{ $report->title }}</h6>
+                                    <p>File<span class="pull-right"> <i class="fa fa-clock-o"> </i> {{ Helper::readableDate($report->created_at) }}</span></p>
+                                </div>
+                                </div>
+                            </li>
+                        </a>
+						@endforeach
                     </ul>
+                    @endif
                 </div>
                 </div>
             </div>
