@@ -11,6 +11,7 @@ use App\Imports\ExcelImport;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use App\Models\Reports;
+use App\Classes\Helper;
 
 class ExcelController extends Controller
 {
@@ -50,6 +51,7 @@ class ExcelController extends Controller
 
         // Save file information to the database
         Reports::create([
+            'reference' => Helper::makeTxnRef(),
             'user_id' => $user->id,
             'title' => $request->input('title'),
             'description' => $request->input('description'),
@@ -62,10 +64,10 @@ class ExcelController extends Controller
     public function showReport($id)
     {
         try {
-            $uploadedFile = Reports::findOrFail($id);
+            $uploadedFile = Reports::where('reference', $id)->firstOrFail();
     
             // Download the file from Cloudinary
-            $fileContent = file_get_contents($uploadedFile->file_path);
+            $fileContent = file_get_contents($uploadedFile->file);
             $tempFilePath = tempnam(sys_get_temp_dir(), 'excel');
             file_put_contents($tempFilePath, $fileContent);
     
@@ -74,9 +76,9 @@ class ExcelController extends Controller
             Excel::import($import, $tempFilePath);
     
             $data = session('excel_data', []);
-            return view('report', compact('data'));
+            return view('reportDashboard', ['data' => $data, 'report' => $uploadedFile]);
         } catch (\Exception $e) {
-            return view('error');
+            return $e;
         }
     }
 }

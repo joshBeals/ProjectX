@@ -1,6 +1,5 @@
-
 <div class="row"> 
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
     <div class="card total-sales">
         <div class="card-body">
         <div class="row">
@@ -10,14 +9,8 @@
                     <use href="{{ asset('assets/svg/icon-sprite.svg#Revenue') }}"></use>
                 </svg></span>
                 <div class="flex-shrink-0"> 
-                <h4>0</h4>
-                <h6>Total Reports </h6>
-                <div class="arrow-chart">
-                    <svg>
-                    <use href="{{ asset('assets/svg/icon-sprite.svg#arrow-chart-up') }}"></use>
-                    </svg>
-                    <h5 class="font-success">+34%</h5>
-                </div>
+                <h4>{{ Helper::shortNumber($data['active_users']) }}</h4>
+                <h6>Active Users </h6>
                 </div>
             </div>
             </div>
@@ -28,7 +21,7 @@
         </div>
     </div>
     </div>
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
     <div class="card total-sales">
         <div class="card-body">
         <div class="row">
@@ -38,14 +31,8 @@
                     <use href="{{ asset('assets/svg/icon-sprite.svg#Sales') }}"></use>
                 </svg></span>
                 <div class="flex-shrink-0"> 
-                <h4 class="text-success">Online</h4>
-                <h6>User Status</h6>
-                <div class="arrow-chart">
-                    <svg>
-                    <use href="{{ asset('assets/svg/icon-sprite.svg#arrow-chart') }}"></use>
-                    </svg>
-                    <h5 class="font-danger">100%</h5>
-                </div>
+                <h4>{{ Helper::shortNumber($data['orders']) }}</h4>
+                <h6>Orders</h6>
                 </div>
             </div>
             </div>
@@ -56,7 +43,7 @@
         </div>
     </div>
     </div>
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
     <div class="card total-sales">
         <div class="card-body">
         <div class="row">
@@ -66,14 +53,8 @@
                     <use href="{{ asset('assets/svg/icon-sprite.svg#Customer') }}"></use>
                 </svg></span>
                 <div class="flex-shrink-0"> 
-                <h4>62,828</h4>
-                <h6>Total Customer</h6>
-                <div class="arrow-chart">
-                    <svg>
-                    <use href="{{ asset('assets/svg/icon-sprite.svg#arrow-chart') }}"></use>
-                    </svg>
-                    <h5 class="font-danger">-24%</h5>
-                </div>
+                <h4>{{ Helper::shortNumber($data['total_quantity']) }}</h4>
+                <h6>Quantity</h6>
                 </div>
             </div>
             </div>
@@ -84,7 +65,7 @@
         </div>
     </div>
     </div>
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
     <div class="card total-sales">
         <div class="card-body">
         <div class="row">
@@ -94,14 +75,8 @@
                     <use href="{{ asset('assets/svg/icon-sprite.svg#Product') }}"></use>
                 </svg></span>
                 <div class="flex-shrink-0"> 
-                <h4>72,982</h4>
-                <h6>Total Product</h6>
-                <div class="arrow-chart">
-                    <svg>
-                    <use href="{{ asset('assets/svg/icon-sprite.svg#arrow-chart-up') }}"></use>
-                    </svg>
-                    <h5 class="font-success">+42%</h5>
-                </div>
+                <h4>{{ Helper::shortNumber($data['remains']) }}</h4>
+                <h6>Remains</h6>
                 </div>
             </div>
             </div>

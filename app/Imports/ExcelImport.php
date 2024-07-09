@@ -41,7 +41,26 @@ class ExcelImport implements ToCollection, WithHeadingRow
         $revenue = $totalCharge;
         $cost = $totalCost;
 
-        // Group by user for charts
+        // Calculate number of unique services and providers
+        $numServices = $rows->unique('service')->count();
+        $numProviders = $rows->unique('provider')->count();
+
+        // Calculate status share
+        $statusShare = $rows->groupBy('status')->map(function ($statusRows) {
+            return $statusRows->count();
+        });
+
+        // Group by service for service by orders
+        $serviceByOrders = $rows->groupBy('service')->map(function ($serviceRows) {
+            return $serviceRows->count();
+        })->sortDesc()->take(10);
+
+        // Group by provider for provider by orders
+        $providerByOrders = $rows->groupBy('provider')->map(function ($providerRows) {
+            return $providerRows->count();
+        })->sortDesc()->take(10);
+
+        // Group by user for top users by spend and orders
         $topUsersBySpend = $rows->groupBy('user')->map(function ($userRows) {
             return $userRows->sum('charge');
         })->sortDesc()->take(10);
@@ -61,8 +80,13 @@ class ExcelImport implements ToCollection, WithHeadingRow
             'remains' => $remains,
             'revenue' => $revenue,
             'cost' => $cost,
-            'top_users_by_spend' => $topUsersBySpend,
-            'top_users_by_orders' => $topUsersByOrders,
+            'num_services' => $numServices,
+            'num_providers' => $numProviders,
+            'status_share' => $statusShare->toArray(),
+            'service_by_orders' => $serviceByOrders->toArray(),
+            'provider_by_orders' => $providerByOrders->toArray(),
+            'top_users_by_spend' => $topUsersBySpend->toArray(),
+            'top_users_by_orders' => $topUsersByOrders->toArray(),
         ]);
     }
 }

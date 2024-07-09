@@ -13,6 +13,7 @@ class Reports extends Model
 
     protected $fillable = [
         'user_id',
+        'reference',
         'title',
         'description',
         'file',

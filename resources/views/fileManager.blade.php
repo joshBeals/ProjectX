@@ -86,7 +86,7 @@
                     @else
                     <ul class="folder mb-2">
                         @foreach($reports as $report)
-                        <a href="/report/{{ $ }}">
+                        <a href="/dashboard/report/{{ $report->reference }}">
                             <li class="folder-box">
                                 <div class="d-block"><i class="f-44 fa fa-file-excel-o font-success"></i>
                                 <div class="mt-3">  
